@@ -1,0 +1,81 @@
+$sales-color: purple;
+
+@mixin keyframes($name) {
+  @-o-keyframes $name {
+    @content;
+  }
+
+  @-moz-keyframes $name {
+    @content;
+  }
+
+  @-webkit-keyframes $name {
+    @content;
+  }
+
+@-keyframes $name {
+    @content;
+  }
+}
+
+@mixin bounce-effect($bounce-color, $keyframe) {
+  .thumbnail {
+    width: 400px;
+    height: 300px;
+    margin: 0 auto 30px auto;
+    background-color: $bounce-color;
+    box-shadow: 0 0 0 5px $bounce-color;
+    border: none;
+    text-decoration: none;
+
+    &:hover {
+      cursor: default;
+      -moz-animation: $keyframe .4s linear;
+      -webkit-animation: $keyframe .4s linear;
+    }
+  }
+}
+
+.panel_item {
+  img {
+    margin-top: 45px;
+    margin-left: 55px;
+  }
+
+  p {
+    width: 400px;
+    text-align: center;
+    color: #ffffff;
+  }
+}
+
+.sales {
+  $bounce-color: $sales-color;
+  $keyframe: sales-bounce;
+  @include bounce-effect($bounce-color, $keyframe);
+}
+
+@include keyframes(sales-bounce) {
+  0% {
+    box-shadow: 0 0 0 4px $sales-color;
+    opacity: 1;
+  }
+  25% {
+    box-shadow: 0 0 0 1px $sales-color;
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 0 7px $sales-color;
+    opacity: 1;
+  }
+  75% {
+    box-shadow: 0 0 0 4px $sales-color;
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0 0 0 5px $sales-color;
+    opacity: 1;
+  }
+}
+
+

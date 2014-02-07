@@ -1,0 +1,49 @@
+<div class="row panel_item" data-no-turbolink>
+  <div class="col-xs-12 col-md-6 sales">
+    <div class="thumbnail">
+      <p>Customer</p>
+      <p><span style="font-size: 60px">460</span> active customers</p>
+      <p><span style="font-size: 60px">1,421</span> total customers</p>
+      <p><a href="<%= customers_url %>" class="btn btn-primary btn-lg" role="button"><i class="fa fa-eye"></i> View</a>
+        <a href="<%= new_customer_url %>" class="btn btn-primary btn-lg" role="button"><i class="fa fa-plus"></i> New</a></p>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6 sales">
+    <div class="thumbnail">
+      <p>Invoice</p>
+      <p><span style="font-size: 60px">890</span> invoices issued</p>
+      <p><span style="font-size: 60px">1,921</span> quotations issued</p>
+      <p><a href="<%= customers_url %>" class="btn btn-primary btn-lg" role="button"><i class="fa fa-eye"></i> View</a>
+        <a href="<%= customers_url %>" class="btn btn-primary btn-lg" role="button"><i class="fa fa-plus"></i> New</a></p>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6 sales">
+    <div class="thumbnail">
+      <p>Report</p>
+      <canvas id="canvas" height="195" width="300" style="margin-left: 50px"></canvas>
+      <script>
+          var lineChartData = {
+              labels : ["","","","","","",""],
+              datasets : [
+                  {
+                      fillColor : "rgba(220,220,220,0.5)",
+                      strokeColor : "rgba(220,220,220,1)",
+                      pointColor : "rgba(220,220,220,1)",
+                      pointStrokeColor : "#fff",
+                      data : [65,59,90,81,56,55,40]
+                  },
+                  {
+                      fillColor : "rgba(151,187,205,0.5)",
+                      strokeColor : "rgba(151,187,205,1)",
+                      pointColor : "rgba(151,187,205,1)",
+                      pointStrokeColor : "#fff",
+                      data : [28,48,40,19,96,27,100]
+                  }
+              ]
+          }
+          var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData, {scaleShowLabels : false, scaleShowGridLines : false, pointDotRadius : 2});
+      </script>
+      <p><a href="<%=bpm_sales.report_index_url %>" class="btn btn-primary btn-lg" role="button"><i class="fa fa-eye"></i> View</a></p>
+    </div>
+  </div>
+</div>

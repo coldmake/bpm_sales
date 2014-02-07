@@ -1,0 +1,40 @@
+<h2>Customer List</h2>
+<div class="table-responsive">
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Company</th>
+      <th>Remark</th>
+      <!--<th>Quotation</th>-->
+      <!--<th>Invoice</th>-->
+      <th colspan='3'>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.email %></td>
+        <td><%= customer.name %></td>
+        <td><%= customer.phone %></td>
+        <td><%= customer.company %></td>
+        <td><%= customer.remark %></td>
+        <!--<td><%= customer.quotation_id %></td>-->
+        <!--<td><%= customer.invoice_id %></td>-->
+        <td><%= link_to 'Show', customer %></td>
+        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
+<br>
+
+<%= link_to 'New Customer', new_customer_path %>
+
