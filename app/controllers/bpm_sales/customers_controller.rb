@@ -56,7 +56,7 @@ module BpmSales
 
       # Only allow a trusted parameter "white list" through.
       def customer_params
-        params.require(:customer).permit(:email, :name, :phone, :company, :remark, :quotation_id, :invoice_id)
+        params.require(:customer).permit(:email, :name, :phone, :company, :remark)
       end
   end
 end

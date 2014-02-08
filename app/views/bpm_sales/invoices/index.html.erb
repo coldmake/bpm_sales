@@ -1,0 +1,26 @@
+<h2>Invoices</h2>
+
+<% if @invoices.empty? %>
+  <em>There aren't any invoices.</em>
+<% else %>
+  <table class="table table-strip table-hover">
+    <tr>
+      <th>Id</th>
+      <th>Company</th>
+      <th>Created At</th>
+      <th>Due On</th>
+      <th>Paid On</th>
+    </tr>
+    <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= link_to invoice.id, edit_invoice_url(invoice) %></td>
+        <td><%= invoice['bill_to'] %></td>
+        <td><%= invoice.created_at %></td>
+        <td><%= invoice.due_at %></td>
+        <td><%= invoice.paid_at %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<%= link_to "New Invoice", new_invoice_url %>
