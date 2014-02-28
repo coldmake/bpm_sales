@@ -21,11 +21,20 @@ module BpmSales
 
     # GET /line_items/1/edit
     def edit
+      @invoice = Invoice.find(params[:invoice_id])
+      @line_item = LineItem.find(params[:id])
     end
 
     # POST /line_items
     def create
-      invoice_url(@invoice)
+      @invoice = Invoice.find(params[:invoice_id])
+      @line_item = LineItem.new(line_item_params, invoice_id: params[:invoice_id].to_i)
+      if @line_item.save
+        binding.pry
+        redirect_to invoice_url(@invoice), notice: 'Customer was successfully created.'
+      else
+        render action: 'new'
+      end
     end
 
     # PATCH/PUT /line_items/1
@@ -47,7 +56,10 @@ module BpmSales
 
     # Only allow a trusted parameter "white list" through.
     def line_item_params
-      params.require(:line_item).permit(:price, :quantity, :description, :invoice_id)
+      temp=params.require(:line_item).permit(:price, :quantity, :description)
+      binding.pry
+      temp[:invoice_id]=params[:invoice_id]
+      temp
     end
   end
 end

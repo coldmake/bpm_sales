@@ -18,7 +18,7 @@
   <% if @invoice.paid? %>
     <%= @invoice.paid_at %>
   <% else %>
-
+     Unpaid (<%= link_to "Mark as Paid", mark_paid_invoice_url(@invoice), :method => :put %>)
   <% end %>
 </div>
 

@@ -5,6 +5,8 @@ class CreatePaydayTables < ActiveRecord::Migration
       t.date :due_at
       t.date :paid_at
 
+      t.boolean :paid
+
       t.decimal :total, precision: 10, scale: 2
 
       t.string :bill_to

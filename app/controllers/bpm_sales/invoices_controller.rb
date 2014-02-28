@@ -2,7 +2,7 @@ require_dependency "bpm_sales/application_controller"
 
 module BpmSales
   class InvoicesController < ApplicationController
-    before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+    before_action :set_invoice, only: [:show, :edit, :update, :destroy, :mark_paid]
 
     # GET /invoices
     def index
@@ -12,26 +12,27 @@ module BpmSales
     # GET /invoices/1
     def show
       respond_to do |format|
-      format.html
-      format.pdf {
-        Payday::Config.default.invoice_logo = "app/assets/images/logo.png"
-        Payday::Config.default.company_name = "Asental Pte. Ltd."
-        Payday::Config.default.company_details = "Innovation Centre BLK 2, #02-235 18 Nanyang Drive, Singapore 637723 \nsamuel.shen@asental.com"
-        send_data(@invoice.render_pdf, :filename => "Invoice #{@invoice.id}.pdf", :type => "application/pdf", :disposition => "inline") }
-    end
+        format.html
+        format.pdf {
+          Payday::Config.default.invoice_logo = "app/assets/images/logo.png"
+          Payday::Config.default.company_name = "Asental Pte. Ltd."
+          Payday::Config.default.company_details = "Innovation Centre BLK 2, #02-235 18 Nanyang Drive, Singapore 637723 \nsamuel.shen@asental.com"
+          send_data(@invoice.render_pdf, :filename => "Invoice #{@invoice.id}.pdf", :type => "application/pdf", :disposition => "inline") }
+      end
     end
 
     # GET /invoices/new
     def new
+
       @invoice = Invoice.new
-      Payday::Config.default.invoice_logo = "app/assets/images/logo.png"
-      Payday::Config.default.company_name = "Asental Pte. Ltd."
-      Payday::Config.default.company_details = "Innovation Centre BLK 2, #02-235 18 Nanyang Drive, Singapore 637723 \nsamuel.shen@asental.com"
-      invoice = Payday::Invoice.new(:invoice_number => 1, :bill_to => "Another Pte. Ltd.\nclient@another.com")
-      invoice.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
-      invoice.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
-      invoice.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
-      invoice.render_pdf_to_file("app/assets/invoices/sample.pdf")
+      #Payday::Config.default.invoice_logo = "app/assets/images/logo.png"
+      #Payday::Config.default.company_name = "Asental Pte. Ltd."
+      #Payday::Config.default.company_details = "Innovation Centre BLK 2, #02-235 18 Nanyang Drive, Singapore 637723 \nsamuel.shen@asental.com"
+      #invoice = Payday::Invoice.new(:invoice_number => 1, :bill_to => "Another Pte. Ltd.\nclient@another.com")
+      #invoice.line_items << LineItem.new(:price => 20, :quantity => 5, :description => "Pants")
+      #invoice.line_items << LineItem.new(:price => 10, :quantity => 3, :description => "Shirts")
+      #invoice.line_items << LineItem.new(:price => 5, :quantity => 200, :description => "Hats")
+      #invoice.render_pdf_to_file("app/assets/invoices/sample.pdf")
     end
 
     # GET /invoices/1/edit
@@ -67,7 +68,7 @@ module BpmSales
     def mark_paid
       if !@invoice.paid?
         @invoice.update_attribute(:paid_at, Time.now)
-      end 
+      end
       redirect_to @invoice and return
     end
 
