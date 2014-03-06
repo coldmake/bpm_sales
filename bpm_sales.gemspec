@@ -6,7 +6,7 @@ require 'bpm_sales/version'
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = 'bpm_sales'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.authors     = ['Samuel Shen']
   s.email       = ['samuel@asental.com']
   s.homepage    = 'http://asental.com'

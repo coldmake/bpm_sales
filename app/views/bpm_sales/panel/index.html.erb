@@ -2,8 +2,8 @@
   <div class="col-xs-12 col-md-6 sales">
     <div class="thumbnail">
       <p>Customer</p>
-      <p><span style="font-size: 60px">460</span> active customers</p>
-      <p><span style="font-size: 60px">1,421</span> total customers</p>
+      <p><span style="font-size: 60px"><%=@new_customer_count %></span> new customer<%="s" if @new_customer_count>1 %></p>
+      <p><span style="font-size: 60px"><%=@total_customer_count %></span> total customer<%="s" if @total_customer_count>1 %></p>
       <p><a href="<%= customers_url %>" class="btn btn-primary btn-lg" role="button"><i class="fa fa-eye"></i> View</a>
         <a href="<%= new_customer_url %>" class="btn btn-primary btn-lg" role="button"><i class="fa fa-plus"></i> New</a></p>
     </div>
@@ -11,8 +11,8 @@
   <div class="col-xs-12 col-md-6 sales">
     <div class="thumbnail">
       <p>Invoice</p>
-      <p><span style="font-size: 60px">890</span> invoices issued</p>
-      <p><span style="font-size: 60px">1,921</span> quotations issued</p>
+      <p><span style="font-size: 60px"><%=@new_invoice_count %></span> new invoice<%="s" if @new_invoice_count>1 %> issued</p>
+      <p><span style="font-size: 60px"><%=@total_invoice_count %></span> total invoice<%="s" if @total_invoice_count>1 %> issued</p>
       <p><a href="<%= invoices_url %>" class="btn btn-primary btn-lg" role="button"><i class="fa fa-eye"></i> View</a>
         <a href="<%= new_invoice_url %>" class="btn btn-primary btn-lg" role="button"><i class="fa fa-plus"></i> New</a></p>
     </div>
