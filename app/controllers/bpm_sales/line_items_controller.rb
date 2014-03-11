@@ -30,7 +30,6 @@ module BpmSales
       @invoice = Invoice.find(params[:invoice_id])
       @line_item = LineItem.new(line_item_params, invoice_id: params[:invoice_id].to_i)
       if @line_item.save
-        binding.pry
         redirect_to invoice_url(@invoice), notice: 'Customer was successfully created.'
       else
         render action: 'new'
@@ -57,7 +56,6 @@ module BpmSales
     # Only allow a trusted parameter "white list" through.
     def line_item_params
       temp=params.require(:line_item).permit(:price, :quantity, :description)
-      binding.pry
       temp[:invoice_id]=params[:invoice_id]
       temp
     end
